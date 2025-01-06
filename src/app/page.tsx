@@ -1,101 +1,74 @@
-import Image from "next/image";
+import React from "react";
+import { ArcadeButton } from "./components/ArcadeButton";
+import { ArcadeScreen } from "./components/ArcadeScreen";
+import ProjectSection from "./components/Projects/ProjectsSection";
+import { SkillsSection } from "./components/Skills/SkillSection";
+import AboutSection from "./components/AboutSection";
+import HobbiesSection from "./components/Hobbies/HobbiesSection";
+import ContactSection from "./components/ContactSection";
+import ScrollNav from "./components/ScrollNav";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="min-h-screen bg-gradient-to-b from-indigo-950 to-black p-8 relative overflow-hidden">
+      <ScrollNav />
+      {/* Subtle Scanline Effect */}
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px] z-50 animate-subtle-scanline mix-blend-overlay"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section Container */}
+      <div className="max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* About Me Section - Left Column Spanning Two Columns */}
+          <div className="md:col-span-2 bg-gradient-to-b from-gray-900 to-indigo-950 rounded-3xl p-8 shadow-[0_0_15px_rgba(99,102,241,0.2)] border border-indigo-500 flex flex-col justify-center">
+            <h1 className="text-4xl font-bold font-mono mb-8 text-center">
+              <span className="text-indigo-400">P1: CODY SAUER</span>{" "}
+              <span className="text-blue-400 animate-pulse">START!</span>
+            </h1>
+            <p className="text-xl text-blue-200 leading-relaxed font-mono text-left">
+              WELCOME TO MY CORNER OF THE ARCADE! I&apos;M A PASSIONATE
+              DEVELOPER WHO LOVES CREATING BEAUTIFUL AND FUNCTIONAL WEBSITES.
+              WHEN I&apos;M NOT CODING, YOU CAN FIND ME EXPLORING THE STAR WARS
+              UNIVERSE OR LEVELING UP IN MY FAVORITE GAMES.
+            </p>
+          </div>
+
+          {/* Full Arcade Cabinet - Right Column */}
+          <div className="md:col-span-1 bg-gradient-to-b from-gray-900 to-indigo-950 rounded-3xl p-8 shadow-[0_0_15px_rgba(99,102,241,0.2)] border border-indigo-500 flex flex-col items-center">
+            <ArcadeScreen />
+            <div className="grid grid-cols-3 gap-4 mt-8">
+              <ArcadeButton href="#projects" color="red" size="normal">
+                PROJECTS
+              </ArcadeButton>
+              <ArcadeButton href="#profile" color="green" size="normal">
+                PROFILE
+              </ArcadeButton>
+              <ArcadeButton
+                href="https://docs.google.com/document/d/1uXqDoNY3oZhgwyMjRfKiRuSP7uvgcw8s/edit?usp=sharing&ouid=101298537941578634270&rtpof=true&sd=true"
+                color="blue"
+                size="normal"
+                external
+              >
+                RESUME
+              </ArcadeButton>
+              <ArcadeButton href="#skills" color="red" size="normal">
+                SKILLS
+              </ArcadeButton>
+              <ArcadeButton href="#hobbies" color="green" size="normal">
+                HOBBIES
+              </ArcadeButton>
+              <ArcadeButton href="#contact" color="blue" size="normal">
+                CONTACT
+              </ArcadeButton>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+
+      <ProjectSection />
+      <SkillsSection />
+      <AboutSection />
+      <HobbiesSection />
+      <ContactSection />
+    </main>
   );
 }
