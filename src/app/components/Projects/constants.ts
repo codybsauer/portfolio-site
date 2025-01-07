@@ -63,7 +63,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "League of Amazing Programmers",
+    title: "The LEAGUE of Amazing Programmers",
     description:
       "A transformative non-profit educational initiative where I served as instructor, manager, and web developer, empowering students in grades 5-12 with essential leadership and programming skills. This comprehensive program bridges the technology education gap, preparing the next generation of developers through hands-on experience with Java, Python, JavaScript, and React.",
     screenshots: [

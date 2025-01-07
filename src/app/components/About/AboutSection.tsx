@@ -6,7 +6,7 @@ const BestiaryProfile = () => {
   const creatureStats = {
     title: "Full Stack Developer",
     classification: "Rare Humanoid - Chaotic Good",
-    armorClass: "16 (Nerdy Graphic Tee)",
+    armorClass: "16 (Graphic Tee)",
     hitPoints: "100 (d10 Hit Die)",
     speed: "30 ft., typing speed 120 wpm",
     attributes: {
