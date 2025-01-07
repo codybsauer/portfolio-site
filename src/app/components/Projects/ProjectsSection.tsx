@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Card, CardContent } from "../UI/Card";
+import { Card, CardContent } from "../Card/Card";
 import { Screenshot } from "./types";
 import { projects } from "./constants";
 
@@ -25,7 +25,6 @@ const ProjectSection = () => {
             className="bg-gradient-to-b from-gray-900 to-indigo-950 border border-indigo-500 overflow-hidden transform hover:scale-[1.02] transition-transform duration-300"
           >
             <CardContent className="p-6 flex flex-col h-full">
-              {/* Top content section */}
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-blue-400 mb-4">
                   {project.title}
@@ -59,7 +58,6 @@ const ProjectSection = () => {
                 </p>
               </div>
 
-              {/* Bottom content section */}
               <div className="mt-auto">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (

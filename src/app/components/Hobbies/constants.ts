@@ -45,8 +45,8 @@ export const hobbies: HobbyCategory[] = [
     ],
   },
   {
-    title: "SINGLE PLAYER VIDEO GAMES",
-    icon: "🎯",
+    title: "SINGLE-PLAYER VIDEO GAMES",
+    icon: "🕹️",
     entries: [
       {
         title: "The Legend of Heroes: Trails through Daybreak",
@@ -71,7 +71,7 @@ export const hobbies: HobbyCategory[] = [
       {
         title: "Marvel Rivals",
         status: "ACTIVE",
-        description: "IT'S SPIDER TIME!!!!!",
+        description: "IT'S SPIDER TIME!!!",
         details: [
           "Main/Vanguard: Peni Parker",
           "Tactician: Luna Snow",

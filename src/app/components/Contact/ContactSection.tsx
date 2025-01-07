@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { Card, CardContent } from "../UI/Card";
+import { Card, CardContent } from "../Card/Card";
 
 interface FormData {
   name: string;
@@ -248,7 +248,7 @@ const ContactSection = () => {
 
                 <div>
                   <label className="block text-blue-200 font-mono mb-2">
-                    SERVICE REQUESTED
+                    INQUIRY TYPE
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {inquiryTypes.map((type) => (

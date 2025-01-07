@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card, CardContent } from "../UI/Card";
+import { Card, CardContent } from "../Card/Card";
 import { hobbies } from "./constants";
 
 const HobbiesSection = () => {

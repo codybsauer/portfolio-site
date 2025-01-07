@@ -41,7 +41,7 @@ const Footer = () => {
                 CREDITS
               </h3>
               <p className="text-blue-200 font-mono text-sm leading-relaxed">
-                PROFILE IMAGE: CONCEPT ART FROM DISCO ELYSIUM © 2019 ZA/UM.
+                PROFILE IMAGE: ART FROM DISCO ELYSIUM © 2019 ZA/UM.
                 <br />
                 ALL RIGHTS RESERVED.
               </p>

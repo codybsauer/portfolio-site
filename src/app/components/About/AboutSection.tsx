@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent } from "../UI/Card";
+import { Card, CardContent } from "../Card/Card";
 import Image from "next/image";
 
 const BestiaryProfile = () => {
@@ -8,7 +8,7 @@ const BestiaryProfile = () => {
     classification: "Rare Humanoid - Chaotic Good",
     armorClass: "16 (Graphic Tee)",
     hitPoints: "100 (d10 Hit Die)",
-    speed: "30 ft., typing speed 120 wpm",
+    speed: "30 ft., typing speed 100 wpm",
     attributes: {
       strengths: [
         "Problem Solving: Expert at breaking down complex challenges",
