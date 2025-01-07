@@ -1,20 +1,5 @@
 import React from "react";
-
-interface Category {
-  title: string;
-}
-
-interface ExpandedCategories {
-  [key: string]: boolean;
-}
-
-interface ExpandableButtonProps {
-  category: Category;
-
-  expandedCategories: ExpandedCategories;
-
-  toggleCategory: (categoryTitle: string) => void;
-}
+import { ExpandableButtonProps } from "./types";
 
 const ExpandableButton: React.FC<ExpandableButtonProps> = ({
   category,

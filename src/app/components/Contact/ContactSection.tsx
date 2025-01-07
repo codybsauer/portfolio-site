@@ -1,33 +1,25 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { Card, CardContent } from "../Card/Card";
-
-interface FormData {
-  name: string;
-  email: string;
-  inquiryType: string;
-  message: string;
-}
-
-interface FormErrors {
-  name: string;
-  email: string;
-  message: string;
-}
-
-interface SubmitStatus {
-  type: "success" | "error" | null;
-  message: string;
-}
+import { FormErrors, SecureFormData, SubmitStatus } from "./types";
+import { inquiryTypes } from "./constants";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<SecureFormData>({
     name: "",
     email: "",
     inquiryType: "",
     message: "",
+    website: "",
+    preferredContact: "",
+    submissionTime: Date.now(),
+    humanInteractions: {
+      mouseMovements: 0,
+      keyPresses: 0,
+      totalTime: 0,
+    },
   });
 
   const [errors, setErrors] = useState<FormErrors>({
@@ -40,36 +32,42 @@ const ContactSection = () => {
     type: null,
     message: "",
   });
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [dynamicFieldName, setDynamicFieldName] = useState("");
+  const [mouseMovements, setMouseMovements] = useState(0);
+  const [keyPresses, setKeyPresses] = useState(0);
+  const formStartTime = useRef(Date.now());
 
   const captchaRef = useRef<HCaptcha>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  const inquiryTypes = [
-    {
-      value: "full-time",
-      title: "Full-Time Position",
-      description: "Looking to hire for a full-time role",
-      icon: "💼",
-    },
-    {
-      value: "freelance",
-      title: "Freelance Development",
-      description: "Need help with a development project",
-      icon: "💻",
-    },
-    {
-      value: "tutoring",
-      title: "Programming Tutoring",
-      description: "Interested in learning computer science",
-      icon: "📚",
-    },
-    {
-      value: "gamemaster",
-      title: "Game Master Services",
-      description: "Looking for a GM for a TTRPG campaign",
-      icon: "🎲",
-    },
-  ];
+  useEffect(() => {
+    const randomString = Math.random().toString(36).substring(2, 15);
+    setDynamicFieldName(`contact_${randomString}`);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPageLoaded(true);
+    }, 4000);
+
+    const handleMouseMove = () => {
+      setMouseMovements((prev) => prev + 1);
+    };
+
+    const handleKeyPress = () => {
+      setKeyPresses((prev) => prev + 1);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("keypress", handleKeyPress);
+    };
+  }, []);
 
   const validateForm = () => {
     let isValid = true;
@@ -78,6 +76,22 @@ const ContactSection = () => {
       email: "",
       message: "",
     };
+
+    const submissionTimeCheck = Date.now() - formData.submissionTime < 3000;
+    const honeypotCheck =
+      formData.website !== "" || formData.preferredContact !== "";
+    const totalTime = Date.now() - formStartTime.current;
+
+    const humanBehaviorCheck =
+      mouseMovements < 2 || keyPresses < 3 || totalTime < 5000;
+
+    if (submissionTimeCheck || honeypotCheck || humanBehaviorCheck) {
+      setSubmitStatus({
+        type: "error",
+        message: "Unable to process request at this time.",
+      });
+      return false;
+    }
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
@@ -126,8 +140,12 @@ const ContactSection = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name,
+          email: formData.email,
+          inquiryType: formData.inquiryType,
+          message: formData.message,
           captchaToken,
+          submissionTime: formData.submissionTime,
         }),
       });
 
@@ -147,9 +165,15 @@ const ContactSection = () => {
         email: "",
         inquiryType: "",
         message: "",
+        website: "",
+        preferredContact: "",
+        submissionTime: Date.now(),
+        humanInteractions: {
+          mouseMovements: 0,
+          keyPresses: 0,
+          totalTime: 0,
+        },
       });
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     } catch (error) {
       setSubmitStatus({
         type: "error",
@@ -179,6 +203,59 @@ const ContactSection = () => {
     setCaptchaToken(token);
   };
 
+  if (!isPageLoaded) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (submitStatus.type === "success") {
+    return (
+      <section id="contact" className="py-16 relative">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
+            CONTACT
+          </h2>
+          <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4">
+          <Card className="bg-gradient-to-b from-gray-900 to-indigo-950 border border-indigo-500">
+            <CardContent className="p-8">
+              <div className="text-center space-y-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-900/50 border-2 border-green-500 mb-4">
+                  <svg
+                    className="w-8 h-8 text-green-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-green-400">
+                  Message Sent Successfully!
+                </h3>
+                <p className="text-blue-200 font-mono max-w-lg mx-auto">
+                  Thank you for reaching out. I&apos;ll review your message and
+                  get back to you as soon as possible. Please check your email
+                  for further communication.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="contact" className="py-16 relative">
       <div className="text-center mb-12">
@@ -191,19 +268,41 @@ const ContactSection = () => {
       <div className="max-w-4xl mx-auto px-4">
         <Card className="bg-gradient-to-b from-gray-900 to-indigo-950 border border-indigo-500">
           <CardContent className="p-8">
-            {submitStatus.type && (
-              <div
-                className={`mb-6 p-4 rounded-lg font-mono text-center ${
-                  submitStatus.type === "success"
-                    ? "bg-green-900/50 text-green-200 border border-green-500"
-                    : "bg-red-900/50 text-red-200 border border-red-500"
-                }`}
-              >
+            {submitStatus.type && submitStatus.type === "error" && (
+              <div className="mb-6 p-4 rounded-lg font-mono text-center bg-red-900/50 text-red-200 border border-red-500">
                 {submitStatus.message}
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div aria-hidden="true" className="hidden">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              <div aria-hidden="true" className="hidden">
+                <label htmlFor={dynamicFieldName}>
+                  Preferred Contact Method
+                </label>
+                <input
+                  type="text"
+                  id={dynamicFieldName}
+                  name="preferredContact"
+                  value={formData.preferredContact}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className={`space-y-6 ${isSubmitting ? "opacity-50" : ""}`}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>

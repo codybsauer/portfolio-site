@@ -9,13 +9,7 @@ import {
   Text,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
-
-interface ContactEmailProps {
-  name: string;
-  email: string;
-  inquiryType: string;
-  message: string;
-}
+import { ContactEmailProps } from "./types";
 
 export const ContactEmail = ({
   name,
@@ -26,10 +20,11 @@ export const ContactEmail = ({
   const getRequestType = (type: string) => {
     const requestTypes = {
       "full-time": "Full-Time Position",
+      "part-time": "Part-Time Position",
       freelance: "Freelance Development",
       tutoring: "Programming Tutoring",
       gamemaster: "Game Master Services",
-      default: "Request Type",
+      default: "Other",
     };
     return (
       requestTypes[type as keyof typeof requestTypes] || requestTypes.default
@@ -54,17 +49,16 @@ export const ContactEmail = ({
 
             <Section className="bg-[#1e1b4b] rounded-lg p-6 mb-6 border border-[#6366f1]">
               <Heading className="text-xl text-[#60a5fa] mb-4">
-                PLAYER STATS
+                CONTACT DETAILS
               </Heading>
               <Text className="text-[#93c5fd] mb-2">
                 Name: <span className="text-white">{name}</span>
               </Text>
               <Text className="text-[#93c5fd] mb-2">
-                Communication Crystal:{" "}
-                <span className="text-white">{email}</span>
+                Email: <span className="text-white">{email}</span>
               </Text>
               <Text className="text-[#93c5fd] mb-2">
-                REQUEST Type:{" "}
+                Request Type:{" "}
                 <span className="text-white">
                   {getRequestType(inquiryType)}
                 </span>

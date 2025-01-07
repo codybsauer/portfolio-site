@@ -2,23 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { ArcadeButton } from "./ArcadeButton";
-
-interface NavSection {
-  id: string;
-  label: string;
-}
+import { sections } from "./constants";
 
 const ScrollNav = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
-
-  const sections: NavSection[] = [
-    { id: "profile", label: "PROFILE" },
-    { id: "skills", label: "SKILLS" },
-    { id: "projects", label: "PROJECTS" },
-    { id: "hobbies", label: "HOBBIES" },
-    { id: "contact", label: "CONTACT" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

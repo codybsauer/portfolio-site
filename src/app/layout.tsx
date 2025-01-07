@@ -10,8 +10,7 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Cody's Arcade Portfolio",
-  description: "Welcome to my retro arcade portfolio",
+  title: "Cody Sauer's Personal Site",
 };
 
 export default function RootLayout({

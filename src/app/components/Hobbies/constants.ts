@@ -39,8 +39,54 @@ export const hobbies: HobbyCategory[] = [
       {
         title: "Wind and Truth",
         status: "READING",
-        description: "Author: Brandon Sanderson",
-        details: ["Book 5 of the Stormlight Archive"],
+        description: "Book 5 of the Stormlight Archive epic fantasy series",
+        details: [
+          "Author: Brandon Sanderson",
+          "It's going to be so long before we get another book!",
+        ],
+      },
+    ],
+  },
+  {
+    title: "TV SHOWS",
+    icon: "📺",
+    entries: [
+      {
+        title: "The Apothecary Diaries",
+        status: "ANTICIPATING",
+        description:
+          "Season 2 of the anime adaptation following a curious apothecary embroiled in palatial intrigue",
+        details: ["Spring 2025 Season", "Maomao is so cute!"],
+      },
+      {
+        title: "Fringe",
+        status: "WATCHING",
+        description:
+          "Older TV Show that hits all the right crime drama and sci-fi elements I enjoy",
+        details: ["Walter is somehow the best and the worst"],
+      },
+    ],
+  },
+  {
+    title: "MOVIES",
+    icon: "🎬",
+    entries: [
+      {
+        title: "Sonic the Hedgehog 3",
+        status: "WATCHED",
+        description: "Edgy boi Shadow via Keanu Reeves",
+        details: [
+          "Binged all three of these movies with my friends. Unexpectedly great!",
+        ],
+      },
+      {
+        title: "Red One",
+        status: "WATCHED",
+        description:
+          "Holiday action-adventure film starring Dwayne 'The Rock' Johnson and Chris Evans",
+        details: [
+          "More entertaining than it has any right to be. Especially with the appropriate amount of holiday 'cheer'",
+        ],
       },
     ],
   },
@@ -51,16 +97,25 @@ export const hobbies: HobbyCategory[] = [
       {
         title: "The Legend of Heroes: Trails through Daybreak",
         status: "REPLAY",
-        description: "Developer: Nihon Falcom",
+        description:
+          "The 11th game in the epic fantasy JRPG series. This one is set in the nation of Calvard",
         details: [
+          "Developer: Nihon Falcom",
           "Doing an abridged cleanup playthrough to get anything I missed before 2 releases",
+          "Long time favorite",
+          "Nothing else quite like it in the video game space",
         ],
       },
       {
         title: "The Legend of Heroes: Trails through Daybreak 2",
         status: "ANTICIPATING",
-        description: "Developer: Nihon Falcom",
-        details: ["Release date: 2/14/2025"],
+        description:
+          "12th game in the series bringing back many favorite characters and expanding on their stories",
+        details: [
+          "Release date: 2/14/2025",
+          "Developer: Nihon Falcom",
+          "I get to play as Renne again. Yay!",
+        ],
       },
     ],
   },
@@ -71,7 +126,8 @@ export const hobbies: HobbyCategory[] = [
       {
         title: "Marvel Rivals",
         status: "ACTIVE",
-        description: "IT'S SPIDER TIME!!!",
+        description:
+          "IT'S SPIDER TIME!!! Marvel hero shooter. Great casual game to play with friends",
         details: [
           "Main/Vanguard: Peni Parker",
           "Tactician: Luna Snow",
@@ -81,8 +137,13 @@ export const hobbies: HobbyCategory[] = [
       {
         title: "The Finals",
         status: "ACTIVE",
-        description: "Current Sponsor: Dissun",
-        details: ["Medium: Support", "Heavy: Spin to win!"],
+        description:
+          "Performance issues aside, I dig the destructability of levels and creative approaches this game allows for",
+        details: [
+          "Medium: Support",
+          "Heavy: Spin to win!",
+          "Current Sponsor: Dissun",
+        ],
       },
     ],
   },

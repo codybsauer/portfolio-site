@@ -12,3 +12,19 @@ export interface SkillCategory {
   title: string;
   skills: Skill[];
 }
+
+export interface Category {
+  title: string;
+}
+
+export interface ExpandedCategories {
+  [key: string]: boolean;
+}
+
+export interface ExpandableButtonProps {
+  category: Category;
+
+  expandedCategories: ExpandedCategories;
+
+  toggleCategory: (categoryTitle: string) => void;
+}

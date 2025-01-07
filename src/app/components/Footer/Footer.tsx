@@ -1,52 +1,16 @@
 "use client";
 
 import React from "react";
-import { siGithub } from "simple-icons";
-import Image from "next/image";
 
-type SocialLink = {
-  name: string;
-  href: string;
-  icon?: {
-    path: string;
-    title: string;
-  };
-  label: string;
-  isLinkedIn?: boolean;
-};
+import Image from "next/image";
+import { socialLinks } from "./constants";
 
 const Footer = () => {
-  const socialLinks: SocialLink[] = [
-    {
-      name: "GitHub",
-      href: "https://github.com/codybsauer",
-      icon: siGithub,
-      label: "View GitHub Profile",
-    },
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/cody-b-sauer/",
-      label: "Connect on LinkedIn",
-      isLinkedIn: true,
-    },
-  ];
-
   return (
     <footer className="bg-gradient-to-b from-indigo-950 to-black border-t border-indigo-500/30">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-8">
-            <div>
-              <h3 className="text-lg font-mono text-indigo-400 mb-2">
-                CREDITS
-              </h3>
-              <p className="text-blue-200 font-mono text-sm leading-relaxed">
-                PROFILE IMAGE: ART FROM DISCO ELYSIUM © 2019 ZA/UM.
-                <br />
-                ALL RIGHTS RESERVED.
-              </p>
-            </div>
-
             <div>
               <h3 className="text-lg font-mono text-indigo-400 mb-2">
                 PHOTO USAGE NOTICE
