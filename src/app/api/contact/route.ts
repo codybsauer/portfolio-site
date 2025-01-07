@@ -1,9 +1,8 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { RateLimiterMemory } from "rate-limiter-flexible";
-import ContactEmail from "@/app/components/ContactEmail";
+import ContactEmail from "@/app/components/Contact/ContactEmail";
 
-// First, let's define interfaces for our request body and error responses
 export interface ContactFormRequest {
   name: string;
   email: string;
@@ -26,10 +25,8 @@ interface ApiResponse {
   details?: string;
 }
 
-// Initialize Resend with your API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Create a rate limiter for protection against spam
 const rateLimiter = new RateLimiterMemory({
   points: 5,
   duration: 30 * 60,
@@ -53,15 +50,12 @@ async function verifyCaptcha(token: string) {
 
 export async function POST(request: Request) {
   try {
-    // Get the IP address for rate limiting
     const forwarded = request.headers.get("x-forwarded-for");
     const ip = forwarded ? forwarded.split(",")[0] : "anonymous";
 
-    // Check rate limit - now with proper error typing
     try {
       await rateLimiter.consume(ip);
     } catch (rateLimitError) {
-      // We know this error comes from rate-limiter-flexible
       const error = rateLimitError as RateLimitError;
       return NextResponse.json<ApiResponse>(
         {
@@ -72,15 +66,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get and validate request data with type safety
     const body = (await request.json()) as ContactFormRequest;
     const { name, email, inquiryType, message, captchaToken } = body;
 
-    // Basic validation
+    const from = process.env.FROM_EMAIL;
+    const to = process.env.TO_EMAIL;
+
     if (!name || !email || !message || !captchaToken) {
       return NextResponse.json<ApiResponse>(
         { error: "Missing required fields" },
         { status: 400 }
+      );
+    }
+
+    if (!from || !to) {
+      return NextResponse.json<ApiResponse>(
+        { error: "Server Error!" },
+        { status: 500 }
       );
     }
 
@@ -89,7 +91,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid captcha" }, { status: 400 });
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json<ApiResponse>(
@@ -98,10 +99,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email using Resend
     await resend.emails.send({
-      from: "Cody Sauer <contact@codysauer.dev>",
-      to: "cody.b.sauer@gmail.com",
+      from,
+      to,
       replyTo: email,
       subject: `Portfolio Contact: ${inquiryType}`,
       react: ContactEmail({ name, email, inquiryType, message }),
@@ -112,7 +112,6 @@ export async function POST(request: Request) {
       message: "Email sent successfully",
     });
   } catch (error) {
-    // Type guard for Error objects
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
     console.error("Failed to send email:", errorMessage);

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer/Footer";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pressStart2P.variable} font-sans`}>{children}</body>
+      <body className={`${pressStart2P.variable} font-sans`}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { Card, CardContent } from "./UI/Card";
+import { Card, CardContent } from "../UI/Card";
 
 interface FormData {
   name: string;
@@ -23,7 +23,6 @@ interface SubmitStatus {
 }
 
 const ContactSection = () => {
-  // Form state management
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -31,7 +30,6 @@ const ContactSection = () => {
     message: "",
   });
 
-  // Form validation and submission states
   const [errors, setErrors] = useState<FormErrors>({
     name: "",
     email: "",
@@ -43,16 +41,14 @@ const ContactSection = () => {
     message: "",
   });
 
-  // hCaptcha state and ref
   const captchaRef = useRef<HCaptcha>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  // Available inquiry types
   const inquiryTypes = [
     {
       value: "full-time",
       title: "Full-Time Position",
-      description: "Looking to hire for a full-time development role",
+      description: "Looking to hire for a full-time role",
       icon: "💼",
     },
     {
@@ -70,12 +66,11 @@ const ContactSection = () => {
     {
       value: "gamemaster",
       title: "Game Master Services",
-      description: "Looking for a GM for your TTRPG campaign",
+      description: "Looking for a GM for a TTRPG campaign",
       icon: "🎲",
     },
   ];
 
-  // Form validation function
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
@@ -114,7 +109,6 @@ const ContactSection = () => {
     return isValid;
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -148,7 +142,6 @@ const ContactSection = () => {
         message: "Message sent successfully! I'll get back to you soon.",
       });
 
-      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -170,7 +163,6 @@ const ContactSection = () => {
     }
   };
 
-  // Handle input changes
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -183,7 +175,6 @@ const ContactSection = () => {
     }));
   };
 
-  // Handle captcha verification
   const handleVerificationSuccess = (token: string) => {
     setCaptchaToken(token);
   };
@@ -192,7 +183,7 @@ const ContactSection = () => {
     <section id="contact" className="py-16 relative">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
-          QUEST BOARD
+          CONTACT
         </h2>
         <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
       </div>
@@ -214,11 +205,10 @@ const ContactSection = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className={`space-y-6 ${isSubmitting ? "opacity-50" : ""}`}>
-                {/* Contact Info Fields */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-blue-200 font-mono mb-2">
-                      YOUR NAME
+                      NAME
                     </label>
                     <input
                       type="text"
@@ -236,7 +226,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <label className="block text-blue-200 font-mono mb-2">
-                      YOUR EMAIL
+                      EMAIL
                     </label>
                     <input
                       type="email"
@@ -256,10 +246,9 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                {/* Inquiry Type Selection */}
                 <div>
                   <label className="block text-blue-200 font-mono mb-2">
-                    QUEST TYPE
+                    SERVICE REQUESTED
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {inquiryTypes.map((type) => (
@@ -297,10 +286,9 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                {/* Message Field */}
                 <div>
                   <label className="block text-blue-200 font-mono mb-2">
-                    YOUR MESSAGE
+                    ADDITIONAL DETAILS
                   </label>
                   <textarea
                     name="message"
@@ -319,7 +307,6 @@ const ContactSection = () => {
                   )}
                 </div>
 
-                {/* hCaptcha */}
                 <div className="flex justify-center items-center min-h-[100px] bg-indigo-950/50 rounded-lg border border-indigo-500/50 p-4">
                   <HCaptcha
                     sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
@@ -330,7 +317,6 @@ const ContactSection = () => {
                   />
                 </div>
 
-                {/* Submit Button */}
                 <div className="text-center">
                   <button
                     type="submit"

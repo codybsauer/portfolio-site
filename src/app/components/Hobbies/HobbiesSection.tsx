@@ -1,4 +1,3 @@
-// components/Hobbies/HobbiesSection.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -12,7 +11,7 @@ const HobbiesSection = () => {
     <section id="hobbies" className="py-16 relative">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">
-          SIDE QUESTS
+          HOBBIES
         </h2>
         <div className="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
       </div>

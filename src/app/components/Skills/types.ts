@@ -1,12 +1,8 @@
-// components/Skills/types.ts
-export type SkillStatus = "proficient" | "learning" | "rusty" | "future";
+export type SkillStatus = "proficient" | "learning" | "future";
 
 export interface SkillBarProps {
-  /** Name of the skill */
   name: string;
-  /** Proficiency level from 0-100 */
   level: number;
-  /** Current status of the skill */
   status: SkillStatus;
 }
 

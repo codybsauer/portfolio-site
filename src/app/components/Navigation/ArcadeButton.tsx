@@ -1,13 +1,16 @@
+"use client";
+
+import { useScroll } from "@/app/hooks/useScroll";
 import Link from "next/link";
 
 interface ArcadeButtonProps {
-  href?: string; // Make href optional since we'll use onClick for nav
+  onClick?: () => void;
+  href?: string;
   children: React.ReactNode;
   color: "red" | "green" | "blue";
   size?: "small" | "normal" | "large";
   external?: boolean;
-  onClick?: () => void; // Add onClick for navigation functionality
-  className?: string; // Add className for additional styling
+  className?: string;
 }
 
 export const ArcadeButton = ({
@@ -16,8 +19,8 @@ export const ArcadeButton = ({
   color,
   size = "normal",
   external = false,
-  onClick,
   className = "",
+  onClick,
 }: ArcadeButtonProps) => {
   const colorStyles = {
     red: {
@@ -42,9 +45,9 @@ export const ArcadeButton = ({
 
   const sizeStyles = {
     small: {
-      width: "w-14", // Smaller width for nav buttons
-      height: "h-14", // Smaller height for nav buttons
-      fontSize: "text-xs", // Keep text small but readable
+      width: "w-14",
+      height: "h-14",
+      fontSize: "text-xs",
     },
     normal: {
       width: "w-16",
@@ -68,15 +71,14 @@ export const ArcadeButton = ({
       }
     : {};
 
-  // Create the button content
+  const { scrollToSection } = useScroll(href);
+
   const ButtonContent = () => (
     <div className={`relative group ${className}`}>
-      {/* Button base (shadow) */}
       <div
         className={`${dimensions.width} ${dimensions.height} rounded-full ${styles.base} transform translate-y-1 opacity-50`}
       ></div>
 
-      {/* Button top */}
       <div
         className={`absolute inset-0 ${dimensions.width} ${dimensions.height} rounded-full ${styles.highlight} 
         border-2 ${styles.border} transform group-hover:-translate-y-1 
@@ -88,19 +90,17 @@ export const ArcadeButton = ({
         >
           {children}
         </div>
-        {/* Highlight effect - adjusted for small size */}
         <div className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white opacity-20 rounded-full"></div>
       </div>
     </div>
   );
 
-  // Return either a link or a button based on whether href is provided
-  return href ? (
+  return external && href ? (
     <Link href={href} {...externalProps}>
       <ButtonContent />
     </Link>
   ) : (
-    <button onClick={onClick} type="button">
+    <button onClick={onClick ? onClick : scrollToSection} type="button">
       <ButtonContent />
     </button>
   );

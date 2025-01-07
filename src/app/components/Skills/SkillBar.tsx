@@ -14,7 +14,6 @@ export const SkillBar: React.FC<SkillBarProps> = ({ name, level, status }) => {
     }
   };
 
-  // For future skills, we don't show a progress bar
   const showBar = status !== "future";
 
   return (

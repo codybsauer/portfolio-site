@@ -1,4 +1,3 @@
-// emails/ContactEmail.tsx
 import {
   Body,
   Container,
@@ -24,37 +23,35 @@ export const ContactEmail = ({
   inquiryType,
   message,
 }: ContactEmailProps) => {
-  // Helper function to convert inquiryType to a more thematic display name
-  const getQuestType = (type: string) => {
-    const questTypes = {
-      "full-time": "Main Quest: Full-Time Position",
-      freelance: "Side Quest: Freelance Development",
-      tutoring: "Training Quest: Programming Tutoring",
-      gamemaster: "Adventure Quest: Game Master Services",
-      // Default case if type doesn't match
-      default: "Quest Type",
+  const getRequestType = (type: string) => {
+    const requestTypes = {
+      "full-time": "Full-Time Position",
+      freelance: "Freelance Development",
+      tutoring: "Programming Tutoring",
+      gamemaster: "Game Master Services",
+      default: "Request Type",
     };
-    return questTypes[type as keyof typeof questTypes] || questTypes.default;
+    return (
+      requestTypes[type as keyof typeof requestTypes] || requestTypes.default
+    );
   };
 
   return (
     <Html>
       <Head />
-      <Preview>New Quest Request from {name}</Preview>
+      <Preview>New Request from {name}</Preview>
       <Tailwind>
         <Body className="bg-[#020617] font-mono">
           <Container className="mx-auto py-5 px-4">
-            {/* Main Header */}
             <Section className="bg-[#1e1b4b] rounded-lg p-6 mb-6 text-center border border-[#6366f1]">
               <Heading className="text-2xl font-bold text-[#60a5fa] m-0">
-                NEW QUEST REQUEST
+                NEW REQUEST
               </Heading>
               <Text className="text-[#93c5fd] m-0 mt-2">
                 A new adventurer seeks to join forces!
               </Text>
             </Section>
 
-            {/* Player Info Section */}
             <Section className="bg-[#1e1b4b] rounded-lg p-6 mb-6 border border-[#6366f1]">
               <Heading className="text-xl text-[#60a5fa] mb-4">
                 PLAYER STATS
@@ -67,28 +64,28 @@ export const ContactEmail = ({
                 <span className="text-white">{email}</span>
               </Text>
               <Text className="text-[#93c5fd] mb-2">
-                Quest Type:{" "}
-                <span className="text-white">{getQuestType(inquiryType)}</span>
+                REQUEST Type:{" "}
+                <span className="text-white">
+                  {getRequestType(inquiryType)}
+                </span>
               </Text>
             </Section>
 
-            {/* Message Section */}
             <Section className="bg-[#1e1b4b] rounded-lg p-6 border border-[#6366f1]">
               <Heading className="text-xl text-[#60a5fa] mb-4">
-                QUEST DETAILS
+                REQUEST DETAILS
               </Heading>
               <Text className="text-white whitespace-pre-wrap leading-relaxed">
                 {message}
               </Text>
             </Section>
 
-            {/* Footer */}
             <Section className="mt-6 text-center">
               <Text className="text-[#93c5fd] text-sm">
-                This quest request was received on {new Date().toLocaleString()}
+                This request was received on {new Date().toLocaleString()}
               </Text>
               <Text className="text-[#93c5fd] text-sm">
-                Via your Portfolio Quest Board
+                Via your Portfolio Contact Form
               </Text>
             </Section>
           </Container>

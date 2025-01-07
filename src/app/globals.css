@@ -25,24 +25,10 @@ body {
   font-family: "Press Start 2P", Arial, sans-serif;
 }
 
-@keyframes subtle-scanline {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-.animate-subtle-scanline {
-  animation: subtle-scanline 10s linear infinite;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
-/* Add this to your globals.css */
 @layer base {
   .fixed {
     position: fixed;
@@ -53,7 +39,6 @@ html {
   }
 }
 
-/* If needed, add these keyframes for the animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

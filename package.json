@@ -16,7 +16,8 @@
     "rate-limiter-flexible": "^5.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "resend": "^4.0.1"
+    "resend": "^4.0.1",
+    "simple-icons": "^14.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
