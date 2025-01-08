@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 
 export const HighScoreCounter = () => {
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState("Loading score...");
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setHighScore(Date.now());
+      setHighScore(Date.now().toString());
     }, 1000);
 
     return () => clearInterval(interval);

@@ -406,14 +406,20 @@ const ContactSection = () => {
                   )}
                 </div>
 
-                <div className="flex justify-center items-center min-h-[100px] bg-indigo-950/50 rounded-lg border border-indigo-500/50 p-4">
-                  <HCaptcha
-                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""}
-                    onVerify={handleVerificationSuccess}
-                    ref={captchaRef}
-                    theme="dark"
-                    size="normal"
-                  />
+                <div className="w-full bg-indigo-950/50 rounded-lg border border-indigo-500/50">
+                  <div className="w-full flex justify-center py-8 md:py-6">
+                    <div className="transform -translate-x-2 sm:translate-x-0">
+                      <HCaptcha
+                        sitekey={
+                          process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ""
+                        }
+                        onVerify={handleVerificationSuccess}
+                        ref={captchaRef}
+                        theme="dark"
+                        size="normal"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="text-center">

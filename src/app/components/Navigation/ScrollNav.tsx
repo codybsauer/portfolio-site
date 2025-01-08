@@ -46,7 +46,7 @@ const ScrollNav = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 md:flex flex-col gap-2">
+    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex flex-col gap-2">
       <ArcadeButton
         onClick={scrollToTop}
         color="blue"
