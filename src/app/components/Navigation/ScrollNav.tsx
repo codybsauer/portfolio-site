@@ -11,9 +11,15 @@ const ScrollNav = () => {
   useEffect(() => {
     const handleScroll = () => {
       const projectsSection = document.getElementById("profile");
-      if (projectsSection) {
+      const footer = document.querySelector("footer");
+
+      if (projectsSection && footer) {
         const showNav = window.scrollY >= projectsSection.offsetTop - 100;
-        setIsVisible(showNav);
+
+        const footerRect = footer.getBoundingClientRect();
+        const hideNav = footerRect.top <= window.innerHeight + 100;
+
+        setIsVisible(showNav && !hideNav);
       }
 
       const sectionElements = sections.map((section) => ({
@@ -41,6 +47,13 @@ const ScrollNav = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
   };
 
   if (!isVisible) return null;
@@ -71,6 +84,15 @@ const ScrollNav = () => {
           {section.label}
         </ArcadeButton>
       ))}
+
+      <ArcadeButton
+        onClick={scrollToBottom}
+        color="blue"
+        size="normal"
+        className="opacity-50 hover:opacity-100 transition-opacity"
+      >
+        BOTTOM ↓
+      </ArcadeButton>
     </div>
   );
 };
