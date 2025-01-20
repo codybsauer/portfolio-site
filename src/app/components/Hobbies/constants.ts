@@ -53,7 +53,7 @@ export const hobbies: HobbyCategory[] = [
     entries: [
       {
         title: "The Apothecary Diaries",
-        status: "ANTICIPATING",
+        status: "WATCHING",
         description:
           "Season 2 of the anime adaptation following a curious apothecary embroiled in palatial intrigue",
         details: ["Spring 2025 Season", "Maomao is so cute!"],
@@ -125,7 +125,7 @@ export const hobbies: HobbyCategory[] = [
     entries: [
       {
         title: "Marvel Rivals",
-        status: "ACTIVE",
+        status: "HIATUS",
         description:
           "IT'S SPIDER TIME!!! Marvel hero shooter. Great casual game to play with friends",
         details: [
@@ -136,7 +136,7 @@ export const hobbies: HobbyCategory[] = [
       },
       {
         title: "The Finals",
-        status: "ACTIVE",
+        status: "HIATUS",
         description:
           "Performance issues aside, I dig the destructability of levels and creative approaches this game allows for",
         details: [
