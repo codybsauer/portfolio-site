@@ -22,7 +22,7 @@ export const NavigationConsole = () => {
           HOBBIES
         </ArcadeButton>
         <ArcadeButton
-          href="https://docs.google.com/document/d/1uXqDoNY3oZhgwyMjRfKiRuSP7uvgcw8s/edit?usp=sharing&ouid=101298537941578634270&rtpof=true&sd=true"
+          href="https://docs.google.com/document/d/1MXZ7ipFBSIrUKLEspnaqLY3Ua4pMDT_4nVuNpJXdjrk/edit?usp=sharing"
           color="blue"
           size="normal"
           external
